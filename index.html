@@ -1,63 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #00000;
-    }
-
-    #panda-container {
-      position: relative;
-    }
-
-    #panda {
-      width: 100%; /* Make the panda image responsive */
-      height: auto;
-      animation: pandaAnimation 2s infinite alternate;
-    }
-
-    @keyframes pandaAnimation {
-      0% {
-        transform: translateY(0);
-      }
-      100% {
-        transform: translateY(-10px);
-      }
-    }
-
-    #question-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    button {
-      font-size: 18px;
-      padding: 10px 20px;
-      margin: 10px;
-      cursor: pointer;
-    }
-
-    #assignment-btn {
-      background-color: #4caf50;
-      color: white;
-      border: black;
-    }
-
-    #Thank you!-btn {
-      background-color: #f44336;
-      color: white;
-      border: black;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 2px;
+    width: 306px; /* (100px * 3 cells) + (2px * 2 gaps) */
+    margin: 0 auto;
+  }
+  .cell {
+    border: 1px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
 	
-	.footer {
+  }
+  
+  #instructions {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .footer {
 	  position: fixed;
       left: 0;
       bottom: 0;
@@ -66,28 +40,82 @@
       color: white;
       text-align: center;
 	  padding: 10px;
-	}
-  </style>
-  <script>
-    function displayAnswer(answer) {
-      alert("Don't Worry I won't share the assignment: " + answer);
-    }
-  </script>
+	
+  }
+</style>
 </head>
 <body>
-  <div id="panda-container">
-    <img id="panda" src="https://gifdb.com/images/high/panda-eating-Thank you!odles-cartoon-60tldck9yylt1nf3.gif" alt="Panda Animation">
-  </div>
 
-  <div id="question-container">
-    <h1 style="font-family: 'Ink Free', sans-serif;">Please don't share this assignments to anyone! 🙏 </h1>
-    <a href="https://icedrive.net/s/B9uvkRFwQC4B4FZBDZ63ySGkvYDb"> <button id="assignment-btn" onclick="displayAnswer('assignment')">Assignment </button> </a>
-    <a href=""> <button id="Thank you!-btn" onclick="displayAnswer('Thank you!')">Thank you! </button></a>
-  </div>
-    
-	<div class="footer">
-		<p>Made with ❤️ for brothers!</p>
-	</div>
+<div id="instructions">
+  <h2>Tic Tac Toe</h2>
+  <p>Click on a cell to place your mark. The first player to get three marks in a row, column, or diagonal wins!</p>
+</div>
+<div class="container" id="board">
+</div>
+
+
+<div class="container" id="board">
+</div>
+<div id="message"></div>
+<script>
+  const board = document.getElementById('board');
+  const message = document.getElementById('message');
+  let currentPlayer = 'X';
+  let gameOver = false;
   
+  // Initialize the game board
+  for (let i = 0; i < 9; i++) {
+    const cell = document.createElement('div');
+    cell.classList.add('cell');
+    cell.dataset.index = i;
+    cell.addEventListener('click', handleCellClick);
+    board.appendChild(cell);
+  }
+  
+  // Function to handle cell click
+  function handleCellClick(event) {
+    if (gameOver) return;
+    const cell = event.target;
+    if (!cell.textContent) {
+      cell.textContent = currentPlayer;
+      if (checkWin()) {
+        gameOver = true;
+        message.textContent = `${currentPlayer} wins!`;
+      } else if (checkDraw()) {
+        gameOver = true;
+        message.textContent = "It's a draw!";
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      }
+    }
+  }
+  
+  // Function to check if there's a win
+  function checkWin() {
+    const cells = document.querySelectorAll('.cell');
+    const winningCombos = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+      [0, 4, 8], [2, 4, 6]              // Diagonals
+    ];
+    return winningCombos.some(combo => {
+      const [a, b, c] = combo;
+      return cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent;
+    });
+  }
+  
+  // Function to check if it's a draw
+  function checkDraw() {
+    const cells = document.querySelectorAll('.cell');
+    return [...cells].every(cell => cell.textContent);
+  }
+</script>
+
+
+<div class="footer">
+		<p>Made with ❤️</p>
+		
+	</div>
+
 </body>
 </html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project1</title>
+    <style>
+        /* CSS styles */
+        .pdf {
+            width: 50%;
+            aspect-ratio: 4/3;
+        }
+
+        .pdf,
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            width: 50%;
+            height: 100vh;
+            float: right;
+            overflow: auto;
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+        }
+
+        h1 {
+            color: black;
+        }
+
+        .form-section {
+            width: 30%; /* Form section takes up 50% of the width */
+            padding: 30px;
+        }
+
+        .form-section label {
+            display: block; /* Display labels as blocks for better spacing */
+            margin-right: 10px;
+        }
+
+        .form-section input,
+        .form-section select {
+            width: calc(70% - 10px); /* Adjust input/select width */
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        #customer-details-btn {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-bar input {
+            width: calc(50% - 10px); /* Adjust search input width */
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        #rest-details-section {
+            display: none; /* Initially hide the rest of the details section */
+        }
+
+        /* Adjustments for smaller screens */
+        @media screen and (max-width: 600px) {
+            .form-section label {
+                width: 100%; /* Set labels to full width on smaller screens */
+                text-align: left; /* Align labels to the left on smaller screens */
+                margin-bottom: 5px; /* Decrease margin bottom for labels on smaller screens */
+            }
+
+            .form-section input,
+            .form-section select {
+                width: 100%; /* Set inputs to full width on smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Proto Type</h1>
+    <h3>Pass 1</h3>
+    <object class="pdf" data="test-1.pdf" width="374" height="499"></object>
+
+    <section class="form-section" id="form-section">
+        <form id="receipt-form">
+            <div class="customer-details">
+                <label for="membership-number">Membership#:</label>
+                <input type="text" id="membership-number" name="membership-number" required>
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" required>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                <label for="state">State & Pin Code:</label>
+                <input type="text" id="state" name="state" required>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <button type="button" id="customer-details-btn">Confirm Details</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="form-section" id="rest-details-section">
+        <div class="receipt-details">
+            <label for="retailer">Participating Retailer:</label>
+            <select id="retailer" name="retailer" required>
+                <option value="retailer1">Retailer 1</option>
+                <option value="retailer2">Retailer 2</option>
+            </select>
+            <label for="receipt-date">Date of Receipt:</label>
+            <input type="date" id="receipt-date" name="receipt-date" required>
+            <label for="receipt-time">Time of Receipt:</label>
+            <input type="time" id="receipt-time" name="receipt-time" required>
+            <label for="receipt-total">Receipt Total:</label>
+            <input type="number" id="receipt-total" name="receipt-total" required>
+            <button type="button" id="submit-btn">Okay!</button>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="sku-search" placeholder="Search SKU...">
+            <ul id="sku-list">
+                <li>7628491357</li>
+                <li>9234875610</li>
+                <li>4589273610</li>
+                <li>8319742056</li>
+                <li>5028369174</li>
+                <li>7198456230</li>
+                <li>6043921587</li>
+                <li>2491365870</li>
+                <li>8152093476</li>
+                <li>3947805126</li>
+            </ul>
+			
+			<script>
+        const skuSearchInput = document.getElementById('sku-search');
+        const skuList = Array.from(document.getElementById('sku-list').getElementsByTagName('li'));
+
+        skuSearchInput.addEventListener('input', function () {
+            const searchTerm = skuSearchInput.value;
+            if (searchTerm.length >= 4) {
+                const matchingSKU = skuList.find(sku => sku.textContent.endsWith(searchTerm));
+                if (matchingSKU) {
+                    skuSearchInput.value = matchingSKU.textContent;
+                }
+            }
+        });
+    </script>
+			
+			
+        </div>
+        <table id="product-details-table">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Product</th>
+                    <th>Dollar</th>
+                    <th>Cents</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select name="quantity" id="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </td>
+					
+                    <td>
+                        <input type="text" id="product-sku" value="">
+												
+                    </td>
+					
+                    <td>
+                        <input type="number" id="dollar" min="0">
+                    </td>
+                    <td>
+                        <input type="number" id="cents" min="0" max="99">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="add-product-btn">Add Product</button>
+    </section>
+
+    <script>
+        // JavaScript code
+        const confirmDetailsBtn = document.getElementById('customer-details-btn');
+        const formSection = document.getElementById('form-section');
+        const restDetailsSection = document.getElementById('rest-details-section');
+
+        confirmDetailsBtn.addEventListener('click', function () {
+            // Hide the customer details form section
+            formSection.style.display = 'none';
+            
+            // Display the rest of the details section
+            restDetailsSection.style.display = 'block';
+        });
+
+        // Add product button functionality
+        const addProductBtn = document.getElementById('add-product-btn');
+        addProductBtn.addEventListener('click', function () {
+            const tableBody = document.querySelector('#product-details-table tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>
+                    <select name="quantity" id="quantity">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </td>
+                <td>
+                    <input type="text" id="product-sku" value="">
+                </td>
+                <td>
+                    <input type="number" id="dollar" min="0">
+                </td>
+                <td>
+                    <input type="number" id="cents" min="0" max="99">
+                </td>
+            `;
+            tableBody.appendChild(newRow);
+        });
+    </script>
+</body>
+
+</html>

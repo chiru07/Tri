@@ -1,126 +1,95 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interview Script</title>
+    <title>Project1</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h2 {
-            color: #2c3e50;
-        }
-        .content {
-            margin-bottom: 20px;
-        }
-        #searchBar {
+        /* CSS styles */
+        .pdf {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            font-size: 16px;
+            aspect-ratio: 4/3;
         }
-        .result {
-            display: none;
+
+        .pdf,
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            width: 50%;
+            height: 100vh;
+            float: right;
+            overflow: auto;
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+        }
+
+        h1 {
+            color: black;
+        }
+
+        #next-pdf-btn {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Adjustments for smaller screens */
+        @media screen and (max-width: 600px) {
+            .form-section label {
+                width: 100%; /* Set labels to full width on smaller screens */
+                text-align: left; /* Align labels to the left on smaller screens */
+                margin-bottom: 5px; /* Decrease margin bottom for labels on smaller screens */
+            }
+
+            .form-section input,
+            .form-section select {
+                width: 100%; /* Set inputs to full width on smaller screens */
+            }
         }
     </style>
 </head>
-<body>
-    <input type="text" id="searchBar" onkeyup="searchFunction()" placeholder="Search for keywords...">
 
-    <div id="content">
-        <div class="content">
-            <h2>Explain why your background and experience would be a good fit for this job.</h2>
-            <p>I have a lot of experience in photography, especially in taking pictures of different places and cultures around the world. I have worked for many years capturing beautiful landscapes and people. This makes me a great fit for the job of an international cruise photographer. I am good at adapting to new situations, being creative, and paying attention to details. These skills help me take amazing photos that people from different cultures will love. I enjoy working in lively environments, exploring new places, and capturing memorable moments. My love for photography and travel pushes me to keep getting better, making me a perfect candidate for this job.</p>
-        </div>
-        <div class="content">
-            <h2>Describe a difficult task you were faced with and how you addressed it.</h2>
-            <p>One tough task I had was organizing a photo shoot in a remote place with limited resources and unpredictable weather. To handle this, I planned everything very carefully in advance, including backup equipment and alternative shooting locations. I made sure to keep strong communication with my team so everyone was ready for any unexpected challenges. When it started to rain unexpectedly during the shoot, I quickly changed the schedule and used natural light creatively to get the desired results. Despite the difficulties, the shoot was successful, showing my ability to solve problems under pressure and deliver high-quality work.</p>
-        </div>
-        <div class="content">
-            <h2>Tell us about your best work achievement so far and why it was important.</h2>
-            <p>One of my biggest achievements was when my series of photos on traditional weddings became very popular. Many people started recognizing my talent, which increased my reach on Instagram and led to more orders. This achievement was important because it recognized my creative vision and technical skills. It also helped spread a message of inclusivity and understanding across different cultures. Sharing stories through my photos that resonate with people from various backgrounds was very fulfilling. It reinforced my belief in the power of visual storytelling to foster empathy and connection.</p>
-        </div>
-        <div class="content">
-            <h2>About my photography</h2>
-            <p>I am a 25-year-old photographer living in the busy city of Mumbai. I aim to capture the essence of life in this vibrant city with every click of my camera. From the chaotic streets to the peaceful coastal views, Mumbai offers endless photographic opportunities that fuel my passion for storytelling. As I walk through its colorful streets and diverse neighborhoods, I find inspiration everywhere. This helps me improve my skills and expand my creative horizons. Now, I am eager to take my talents beyond Mumbai and start new adventures as an international cruise photographer, ready to capture the beauty and diversity of places around the world.</p>
-        </div>
-        <div class="content">
-            <h2>Challenging tasks that I have achieved</h2>
-            <ul>
-                <li>Organizing a photo shoot in a remote location with limited resources and unpredictable weather.</li>
-                <li>Managing a large photography project with many team members and tight deadlines.</li>
-                <li>Overcoming technical challenges during a shoot, like low light conditions or equipment problems, to deliver high-quality results.</li>
-                <li>Documenting sensitive or culturally significant events while respecting traditions and privacy.</li>
-                <li>Balancing multiple photography assignments at the same time while maintaining high standards of quality and creativity.</li>
-            </ul>
-        </div>
-        <div class="content">
-            <h2>Managing a large-scale photography project with multiple stakeholders and tight deadlines</h2>
-            <p>Managing a large photography project with many team members and tight deadlines was challenging but rewarding. Coordinating the efforts of different people, like models, assistants, and clients, required effective communication and careful planning. Even with the pressure of looming deadlines, I stayed focused on maintaining the project’s vision and quality standards. By implementing efficient workflows and quickly addressing any issues, we successfully delivered exceptional results that exceeded expectations. This experience showcased my leadership and organizational skills and strengthened my ability to thrive in high-pressure environments.</p>
-        </div>
-        <div class="content">
-            <h2>Sometimes I didn't deliver everything to the customer</h2>
-            <p>Sometimes, I faced challenges in delivering every aspect of a project to the customer’s satisfaction. Despite my best efforts, unforeseen circumstances or limitations beyond my control might have impacted the final outcome. However, in such cases, I prioritized open communication with the customer, acknowledging any shortcomings and working together to find solutions or alternatives. These experiences taught me the importance of managing expectations effectively and continuously improving my processes to ensure consistent and reliable delivery in future projects.</p>
-        </div>
-        <div class="content">
-            <h2>How I would share a new idea with my team</h2>
-            <p>To share my new idea with the team, I would schedule a meeting to present it. I would explain the context, benefits, and implementation plan clearly. I would encourage open discussion to gather feedback and address any questions or concerns, fostering collaboration. Together, we would discuss potential implementation strategies and timelines, ensuring everyone understands their role. After the meeting, I would follow up individually as needed to address further inquiries and keep the team informed of progress, maintaining transparency and engagement throughout the process.</p>
-        </div>
-        <div class="content">
-            <h2>Doing the right thing was not always easy</h2>
-            <p>Navigating ethical dilemmas was often challenging because choosing the right course of action wasn’t always straightforward. Despite the difficulties, I consistently aimed to uphold ethical standards, even when faced with tough decisions. This commitment required courage and integrity, as well as a willingness to confront uncomfortable situations and stand by my principles. While doing the right thing was sometimes hard, I remained committed, knowing that upholding ethical values ultimately builds trust, integrity, and long-term success.</p>
-        </div>
-    </div>
+<body>
+    <h1>Multiple Choice Questions</h1>
+    <h3>All MCQs for DBMS, Computer Oriented Numerical Methods, and Computer Organisation—Now in One Place!</h3>
+
+    <button id="next-pdf-btn">Click Here for Next Subject</button>
+
+    <object id="pdfViewer" class="pdf" data="DBMS MCQ QUIZ_I.pdf" width="374" height="499"></object>
+
+    
 
     <script>
-        function searchFunction() {
-            var input, filter, content, h2, p, ul, li, i, txtValue;
-            input = document.getElementById('searchBar');
-            filter = input.value.toLowerCase();
-            content = document.getElementById("content").getElementsByClassName('content');
+        // JavaScript code
+        const pdfViewer = document.getElementById('pdfViewer');
+        const nextPdfBtn = document.getElementById('next-pdf-btn');
 
-            for (i = 0; i < content.length; i++) {
-                h2 = content[i].getElementsByTagName("h2")[0];
-                p = content[i].getElementsByTagName("p");
-                ul = content[i].getElementsByTagName("ul")[0];
-                if (h2) {
-                    txtValue = h2.textContent || h2.innerText;
-                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                        content[i].style.display = "";
-                    } else {
-                        content[i].style.display = "none";
-                    }
-                }
-                for (var j = 0; j < p.length; j++) {
-                    if (p[j]) {
-                        txtValue = p[j].textContent || p[j].innerText;
-                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                            content[i].style.display = "";
-                            break;
-                        } else {
-                            content[i].style.display = "none";
-                        }
-                    }
-                }
-                if (ul) {
-                    li = ul.getElementsByTagName("li");
-                    for (var k = 0; k < li.length; k++) {
-                        if (li[k]) {
-                            txtValue = li[k].textContent || li[k].innerText;
-                            if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                                content[i].style.display = "";
-                                break;
-                            } else {
-                                content[i].style.display = "none";
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        const pdfFiles = [
+            "DBMS MCQ QUIZ_I.pdf",
+            "Computer Oriented Numerical methods QUIZ_I.pdf",
+            "Computer Organisation MCQ Quizz_I.pdf"
+        ];
+
+        let currentPdfIndex = 0;
+
+        nextPdfBtn.addEventListener('click', function () {
+            // Move to the next PDF in the array
+            currentPdfIndex = (currentPdfIndex + 1) % pdfFiles.length;
+            pdfViewer.data = pdfFiles[currentPdfIndex];
+        });
+
     </script>
 </body>
+
 </html>

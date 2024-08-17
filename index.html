@@ -1,37 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ</title>
     <style>
         /* CSS styles */
         .pdf {
             width: 100%;
-            aspect-ratio: 4/3;
+            height: 100%;
+            border: none;
         }
 
-        .pdf,
         html,
         body {
             height: 100%;
             margin: 0;
             padding: 0;
-        }
-
-        section {
-            width: 50%;
-            height: 100vh;
-            float: right;
-            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1,
         h3 {
             text-align: center;
-        }
-
-        h1 {
-            color: black;
+            margin: 10px 0;
         }
 
         #next-pdf-btn {
@@ -40,21 +35,21 @@
             color: white;
             border: none;
             cursor: pointer;
-            display: block;
-            margin: 20px auto;
+            margin: 20px 0;
+        }
+
+        .pdf-container {
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
         }
 
         /* Adjustments for smaller screens */
         @media screen and (max-width: 600px) {
-            .form-section label {
-                width: 100%; /* Set labels to full width on smaller screens */
-                text-align: left; /* Align labels to the left on smaller screens */
-                margin-bottom: 5px; /* Decrease margin bottom for labels on smaller screens */
-            }
-
-            .form-section input,
-            .form-section select {
-                width: 100%; /* Set inputs to full width on smaller screens */
+            #next-pdf-btn {
+                width: 100%;
+                box-sizing: border-box;
             }
         }
     </style>
@@ -66,9 +61,9 @@
 
     <button id="next-pdf-btn">Click Here for Next Subject</button>
 
-    <object id="pdfViewer" class="pdf" data="DBMS MCQ QUIZ_I.pdf" width="374" height="499"></object>
-
-    
+    <div class="pdf-container">
+        <object id="pdfViewer" class="pdf" data="DBMS MCQ QUIZ_I.pdf"></object>
+    </div>
 
     <script>
         // JavaScript code
@@ -88,7 +83,6 @@
             currentPdfIndex = (currentPdfIndex + 1) % pdfFiles.length;
             pdfViewer.data = pdfFiles[currentPdfIndex];
         });
-
     </script>
 </body>
 

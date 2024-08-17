@@ -29,13 +29,13 @@
             margin: 10px 0;
         }
 
-        #next-pdf-btn {
+        .subject-btn {
             padding: 10px 20px;
             background-color: blue;
             color: white;
             border: none;
             cursor: pointer;
-            margin: 20px 0;
+            margin: 10px 5px;
         }
 
         .pdf-container {
@@ -47,9 +47,10 @@
 
         /* Adjustments for smaller screens */
         @media screen and (max-width: 600px) {
-            #next-pdf-btn {
+            .subject-btn {
                 width: 100%;
                 box-sizing: border-box;
+                margin: 10px 0;
             }
         }
     </style>
@@ -57,32 +58,25 @@
 
 <body>
     <h1>Multiple Choice Questions</h1>
-    <h3>All MCQs for DBMS, Computer Oriented Numerical Methods, and Computer Organisation—Now in One Place!</h3>
+    <h3>All MCQs for DBMS, Computer Oriented Numerical Methods, Computer Organisation, and Basics of Data Communication—Now in One Place!</h3>
 
-    <button id="next-pdf-btn">Click Here for Next Subject</button>
+    <div>
+        <button class="subject-btn" onclick="loadPDF('https://atom-jnfxxb.s3.ap-southeast-2.amazonaws.com/DBMS+MCQ+QUIZ_I.pdf')">DBMS</button>
+        <button class="subject-btn" onclick="loadPDF('https://atom-jnfxxb.s3.ap-southeast-2.amazonaws.com/Basics_of_Data_Communication+MCQ+Quiz.pdf')">Basics of Data Communication</button>
+        <button class="subject-btn" onclick="loadPDF('https://atom-jnfxxb.s3.ap-southeast-2.amazonaws.com/Computer+Organisation+MCQ+Quizz_I.pdf')">Computer Organisation</button>
+        <button class="subject-btn" onclick="loadPDF('https://atom-jnfxxb.s3.ap-southeast-2.amazonaws.com/Computer+Oriented+Numerical+methods+QUIZ_I.pdf')">Computer Oriented Numerical Methods</button>
+    </div>
 
     <div class="pdf-container">
-        <object id="pdfViewer" class="pdf" data="DBMS MCQ QUIZ_I.pdf"></object>
+        <object id="pdfViewer" class="pdf"></object>
     </div>
 
     <script>
-        // JavaScript code
-        const pdfViewer = document.getElementById('pdfViewer');
-        const nextPdfBtn = document.getElementById('next-pdf-btn');
-
-        const pdfFiles = [
-            "DBMS MCQ QUIZ_I.pdf",
-            "Computer Oriented Numerical methods QUIZ_I.pdf",
-            "Computer Organisation MCQ Quizz_I.pdf"
-        ];
-
-        let currentPdfIndex = 0;
-
-        nextPdfBtn.addEventListener('click', function () {
-            // Move to the next PDF in the array
-            currentPdfIndex = (currentPdfIndex + 1) % pdfFiles.length;
-            pdfViewer.data = pdfFiles[currentPdfIndex];
-        });
+        // Function to load a PDF
+        function loadPDF(pdfUrl) {
+            const pdfViewer = document.getElementById('pdfViewer');
+            pdfViewer.data = pdfUrl;
+        }
     </script>
 </body>
 
